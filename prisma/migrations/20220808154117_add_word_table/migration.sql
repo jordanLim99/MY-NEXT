@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "Word" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "day" INTEGER NOT NULL,
+    "eng" TEXT NOT NULL,
+    "isDone" BOOLEAN NOT NULL,
+    "kor" TEXT NOT NULL
+);
