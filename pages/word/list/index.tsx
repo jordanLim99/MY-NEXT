@@ -3,10 +3,12 @@ import {useEffect, useState} from "react";
 export default function List() {
     const [words, setWords] = useState([]);
 
+
     useEffect(() => {
         fetch(`http://localhost:3000/api`).then(res => res.json())
             .then(res => setWords(res));
-    } , )
+        return console.log(words);
+    } , [])
 /*
 
     const Del =  async function ( ) {

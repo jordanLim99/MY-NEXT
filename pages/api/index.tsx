@@ -28,12 +28,6 @@ export default async function WordHandler(req : any, res : any) {
                     isDone,
                 }
             }))
-        case 'DELETE' :
-            res.json(await prisma.word.delete({
-                where: { id: res.id },
-            }))
-            break;
-
     }
 
 }
