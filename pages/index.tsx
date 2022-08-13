@@ -7,9 +7,8 @@ const Home: NextPage = () => {
   return (
     <div>
       <div className="text-gray-600 body-font">
-        <div className="mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div
-              className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+        <div className="py-24 mx-auto flex flex-col md:flex-row items-center justify-center gap-12">
+          <div className="flex flex-col items-center">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">MY NEXT-JS
               <br className="hidden lg:inline-block"/>
             </h1>
@@ -21,12 +20,11 @@ const Home: NextPage = () => {
               8/12 ~ 단어장 만들기 로컬에서 불러오기
               <br/>
               8/13 ~ 단어장 만들기 firebase cloud storage 에서 불러오기
-              <br/>  <Link href="/word/firebase"><a>firebase</a></Link>
+              <br/>  <Link href="/word/firebase"><a>firebase 단어장 Link</a></Link>
             </p>
           </div>
-          <div className= "max-h-96">
-            <Spline scene="https://prod.spline.design/aT4-O51l60YSoduh/scene.splinecode"
-                    className="object-contain"/>
+          <div className="w-96 h-96 object-cover ">
+            <Spline  className="" scene="https://prod.spline.design/aT4-O51l60YSoduh/scene.splinecode"/>
           </div>
         </div>
       </div>
