@@ -23,7 +23,9 @@ export default function Header() {
                         <Link href="/word">
                             <a className="mx-2 hover:text-gray-900">WORD</a>
                         </Link>
-
+                        <Link href="/todolist">
+                            <a className="mx-2 hover:text-gray-900">TODOLIST</a>
+                        </Link>
                     </nav>
                 </div>
             </header>

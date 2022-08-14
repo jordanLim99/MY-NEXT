@@ -23,7 +23,7 @@ const Home: NextPage = () => {
               <br/>  <Link href="/word/firebase"><a>firebase 단어장 Link</a></Link>
             </p>
           </div>
-          <div className="w-96 h-96 object-cover ">
+          <div className="w-96 h-96 object-cover">
             <Spline  className="" scene="https://prod.spline.design/aT4-O51l60YSoduh/scene.splinecode"/>
           </div>
         </div>
