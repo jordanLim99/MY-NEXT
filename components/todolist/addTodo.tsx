@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { db } from "../../firebase";
+import { db , auth} from "../../firebase";
 import { collection , addDoc } from "firebase/firestore"
 
 export default function AddTodo() {
@@ -9,6 +9,8 @@ export default function AddTodo() {
         if (title !== "") {
             await addDoc(collection(db,"todos"), {
                 title,
+                user : auth.currentUser?.displayName,
+
                 completed : false,
             });
             setTitle("");

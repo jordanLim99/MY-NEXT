@@ -2,17 +2,16 @@ import {TrashIcon} from "@heroicons/react/outline";
 import {CheckCircleIcon} from "@heroicons/react/outline";
 import {PencilAltIcon} from "@heroicons/react/solid";
 import {useState} from "react";
-import {DocumentReference, FieldPath} from "@firebase/firestore";
 
 export default function WordList({ word , toggleComplete , handleDelete , handleEdit, } : any ) {
     const [ newWord , setNewWord ] = useState( word.title );
+
 
     const handleChange = (e : any) => {
         e.preventDefault();
         if (word.complete === true ) {
             setNewWord(word.title);
         } else {
-            word.title = "";
             setNewWord(e.target.value);
         }
     }
@@ -44,15 +43,12 @@ export default function WordList({ word , toggleComplete , handleDelete , handle
                         onClick={() => toggleComplete(word)}>
                         <CheckCircleIcon className="h-10 w-10 text-gray-900"/>
                     </button>
-
                     <button
-                        onClick={()=>{handleEdit( word , newWord )}}
-                    >
+                        onClick={()=>{handleEdit( word.id , newWord )}}>
                         <PencilAltIcon className="h-10 w-10 text-gray-900"/>
                     </button>
                     <button
-                        onClick={()=>{ handleDelete(word)}}
-                    >
+                        onClick={()=>{ handleDelete(word)}}>
                         <TrashIcon className="h-10 w-10 text-gray-900"/>
                     </button>
                 </div>

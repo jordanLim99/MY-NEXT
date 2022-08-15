@@ -11,7 +11,7 @@ export default function AddWord() {
             await addDoc(collection(db,"words"), {
                 engTitle,
                 korTitle,
-                completed : false,
+                complete : false,
             });
             setEngTitle("");
             setKorTitle("");

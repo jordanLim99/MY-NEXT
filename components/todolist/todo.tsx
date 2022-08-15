@@ -19,13 +19,17 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
 
     return(
         <>
-            <div className="flex text-2xl justify-center items-center">
+            <div className="flex gap-2 text-2xl justify-center items-center bg-gray-100 rounded-md p-4 w-fit mx-auto my-2">
+                <div className="w-24 text-center">
+                    {todo.user ? <p className="text-md">{todo.user}</p> : <></>}
+                </div>
                 <div>
                     <input
                         style={{ textDecoration : todo.complete && "line-through "}}
                         type="text"
                         value={todo.title === "" ? newTitle : todo.title }
                         onChange={handleChange}
+                        className="rounded-md"
                     />
                 </div>
                 <div className="flex gap-4 ">
@@ -34,11 +38,11 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
                         <CheckCircleIcon className="h-8 w-8 text-gray-900"/>
                     </button>
 
-                    <button
-                        onClick={()=>{handleEdit( todo , newTitle )}}
-                    >
-                        <PencilAltIcon className="h-8 w-8 text-gray-900"/>
-                    </button>
+                    {/*<button*/}
+                    {/*    onClick={()=>{handleEdit( todo.id , newTitle )}}*/}
+                    {/*>*/}
+                    {/*    <PencilAltIcon className="h-8 w-8 text-gray-900"/>*/}
+                    {/*</button>*/}
                     <button
                         onClick={()=>{ handleDelete(todo)}}
                     >

@@ -1,14 +1,14 @@
 import Title from "../../components/todolist/title"
 import AddTodo from "../../components/todolist/addTodo"
 import Todo from "../../components/todolist/todo"
-import { collection , query , onSnapshot , doc , updateDoc , deleteDoc } from "@firebase/firestore";
+import {collection, query, onSnapshot, doc, updateDoc, deleteDoc, orderBy} from "@firebase/firestore";
 import { db } from "../../firebase"
 import {useEffect, useState} from "react";
 
 export default function ToDoList() {
     const [todos , setTodos ] = useState([]);
     useEffect(()=>{
-        const q = query(collection( db ,"todos" ));
+        const q = query(collection( db ,"todos" ) , orderBy('title' , "asc"));
         const unsub = onSnapshot( q , (querySnapshot) => {
             let todosArray: any[] = [];
             querySnapshot.forEach((doc) => {
@@ -21,8 +21,8 @@ export default function ToDoList() {
         return( () => unsub() )
     },[] )
 
-    const handleEdit = async ( {todo , title } : any ) => {
-        await updateDoc(doc(db, "todos" , todo.id ) , { title : title} );
+    const handleEdit = async ( { id , title } : any ) => {
+        await updateDoc(doc(db, "todos" , id ) , { title : title} );
     }
     const toggleComplete = async ( todo : any ) => {
         await updateDoc(doc(db, "todos" , todo.id ) , { complete : !todo.complete })
@@ -41,7 +41,7 @@ export default function ToDoList() {
                 <Title/>
                 <AddTodo/>
             </div>
-            <div>
+            <div className="mb-20">
                 {todos.map( (todo : any ) =>(
                         <Todo
                             key={todo.id}

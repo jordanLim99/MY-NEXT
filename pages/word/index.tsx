@@ -22,8 +22,8 @@ export default function Word() {
         return (() => unsub())
     }, []);
 
-    const handleEdit = async ( {word , title } : any ) => {
-        await updateDoc(doc(db, "words" , word.id ) , { title : title} );
+    const handleEdit = async ( { id , title } : any ) => {
+        await updateDoc(doc(db, "words" , id ) , { title : title} );
     }
     const toggleComplete = async ( word : any ) => {
         await updateDoc(doc(db, "words" , word.id ) , { complete : !word.complete })
@@ -50,7 +50,6 @@ export default function Word() {
                         toggleComplete={toggleComplete}
                         handleDelete={handelDelete}
                         handleEdit={handleEdit}
-
                     >
                     </WordList>
 
