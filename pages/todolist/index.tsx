@@ -1,7 +1,7 @@
 import Title from "../../components/title"
 import AddTodo from "../../components/addTodo"
 import Todo from "../../components/todo"
-import { collection , query , onSnapshot , doc , updateDoc , deleteDoc} from "@firebase/firestore";
+import { collection , query , onSnapshot , doc , updateDoc , deleteDoc } from "@firebase/firestore";
 import { db } from "../../firebase"
 import {useEffect, useState} from "react";
 
@@ -21,16 +21,16 @@ export default function ToDoList() {
         return( () => unsub() )
     },[] )
 
-    const handleEdit = async (  todo : any  , title  : any ) => {
-        await updateDoc(doc(db, "todos" , todo.id ) , { title : title} )
+    const handleEdit = async ( {todo , title } : any ) => {
+        await updateDoc(doc(db, "todos" , todo.id ) , { title : title} );
     }
-
     const toggleComplete = async ( todo : any ) => {
         await updateDoc(doc(db, "todos" , todo.id ) , { complete : !todo.complete })
     }
 
-    const handelDelete = async ( id : any ) => {
-        await deleteDoc(doc(db , "todos" , id ))
+    const handelDelete = async ( todo : any ) => {
+        await deleteDoc(doc(db , "todos" , todo.id ))
+        return(console.log(todo.id))
     }
 
 

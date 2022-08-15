@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <div className="text-gray-600 body-font">
-        <div className="py-24 mx-auto flex flex-col md:flex-row items-center justify-center gap-12">
+        <div className="py-12 mx-auto flex flex-col md:flex-row items-center justify-center gap-12">
           <div className="flex flex-col items-center">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">MY NEXT-JS
               <br className="hidden lg:inline-block"/>

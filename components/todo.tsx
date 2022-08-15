@@ -2,6 +2,7 @@ import {TrashIcon} from "@heroicons/react/outline";
 import {CheckCircleIcon} from "@heroicons/react/outline";
 import {PencilAltIcon} from "@heroicons/react/solid";
 import {useState} from "react";
+import {DocumentReference, FieldPath} from "@firebase/firestore";
 
 export default function Todo( { todo , toggleComplete , handleDelete , handleEdit, } : any ) {
     const [ newTitle , setNewTitle ] = useState( todo.title );
@@ -32,13 +33,14 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
                         onClick={() => toggleComplete(todo)}>
                         <CheckCircleIcon className="h-8 w-8 text-gray-900"/>
                     </button>
+
                     <button
-                        onClick={()=>{handleEdit( newTitle , todo.id)}}
+                        onClick={()=>{handleEdit( todo , newTitle )}}
                     >
                         <PencilAltIcon className="h-8 w-8 text-gray-900"/>
                     </button>
                     <button
-                        onClick={()=>{handleDelete(todo.id)}}
+                        onClick={()=>{ handleDelete(todo)}}
                     >
                         <TrashIcon className="h-8 w-8 text-gray-900"/>
                     </button>
