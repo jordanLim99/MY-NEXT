@@ -20,7 +20,7 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
         <>
             <div className="flex flex-col gap-2 text-2xl justify-center items-start bg-gray-100 rounded-md p-4 w-fit mx-auto my-2">
                 <div className="w-24 text-sm">
-                    {todo.user ? <p className="text-md">{todo.user}</p> : <></>}
+                    {todo.user !== null ? <p className="text-md">{todo.user}</p> : <></>}
                 </div>
                 <div>
                     <textarea

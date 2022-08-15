@@ -17,7 +17,6 @@ export default function ToDoList() {
             // @ts-ignore
             setTodos(todosArray)
         });
-
         return( () => unsub() )
     },[] )
 
@@ -30,7 +29,6 @@ export default function ToDoList() {
 
     const handelDelete = async ( todo : any ) => {
         await deleteDoc(doc(db , "todos" , todo.id ))
-        return(console.log(todo.id))
     }
 
 
