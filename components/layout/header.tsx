@@ -17,9 +17,9 @@ export default function Header() {
                         </a>
                     </Link>
 
-                    <nav className="ml-auto flex  items-center text-base justify-center">
+                    <nav className="ml-auto flex items-center justify-center">
                         <Link href="/">
-                            <a className="mx-2 hover:text-gray-900">HOME</a>
+                            <a className="mx-1 hover:text-gray-900">HOME</a>
                         </Link>
                         <Link href="/word">
                             <a className="mx-2 hover:text-gray-900">WORD</a>

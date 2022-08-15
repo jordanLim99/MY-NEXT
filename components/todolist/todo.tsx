@@ -2,7 +2,6 @@ import {TrashIcon} from "@heroicons/react/outline";
 import {CheckCircleIcon} from "@heroicons/react/outline";
 import {PencilAltIcon} from "@heroicons/react/solid";
 import {useState} from "react";
-import {DocumentReference, FieldPath} from "@firebase/firestore";
 
 export default function Todo( { todo , toggleComplete , handleDelete , handleEdit, } : any ) {
     const [ newTitle , setNewTitle ] = useState( todo.title );
@@ -19,14 +18,13 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
 
     return(
         <>
-            <div className="flex gap-2 text-2xl justify-center items-center bg-gray-100 rounded-md p-4 w-fit mx-auto my-2">
-                <div className="w-24 text-center">
+            <div className="flex flex-col gap-2 text-2xl justify-center items-start bg-gray-100 rounded-md p-4 w-fit mx-auto my-2">
+                <div className="w-24 text-sm">
                     {todo.user ? <p className="text-md">{todo.user}</p> : <></>}
                 </div>
                 <div>
-                    <input
-                        style={{ textDecoration : todo.complete && "line-through "}}
-                        type="text"
+                    <textarea
+                        style={{ textDecoration : todo.complete && "line-through " , width : 300 , height : 50 , resize : "none" }}
                         value={todo.title === "" ? newTitle : todo.title }
                         onChange={handleChange}
                         className="rounded-md"
@@ -38,11 +36,11 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
                         <CheckCircleIcon className="h-8 w-8 text-gray-900"/>
                     </button>
 
-                    {/*<button*/}
-                    {/*    onClick={()=>{handleEdit( todo.id , newTitle )}}*/}
-                    {/*>*/}
-                    {/*    <PencilAltIcon className="h-8 w-8 text-gray-900"/>*/}
-                    {/*</button>*/}
+                    <button
+                        onClick={()=> handleEdit( todo , newTitle )}
+                    >
+                        <PencilAltIcon className="h-8 w-8 text-gray-900"/>
+                    </button>
                     <button
                         onClick={()=>{ handleDelete(todo)}}
                     >
