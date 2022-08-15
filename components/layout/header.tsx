@@ -5,7 +5,7 @@ export default function Header() {
         <>
             <header className="text-gray-600 body-font text-center">
                 <div className="container mx-auto flex p-5 justify-center items-center">
-                    <Link href="/">
+                    <Link href="/pages">
                         <a className="flex title-font font-medium items-center justify-center text-gray-900 md:mb-0">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round"
                                  strokeLinejoin="round" strokeWidth="2"

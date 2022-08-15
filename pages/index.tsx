@@ -20,7 +20,7 @@ const Home: NextPage = () => {
               8/12 ~ 단어장 만들기 로컬에서 불러오기
               <br/>
               8/13 ~ 단어장 만들기 firebase cloud storage 에서 불러오기
-              <br/>  <Link href="/word/firebase"><a>firebase 단어장 Link</a></Link>
+              <br/>  <Link href="/components/previousWordBookComponent/firebase"><a>firebase 단어장 Link</a></Link>
             </p>
           </div>
           <div className="w-96 h-96 object-cover">

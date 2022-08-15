@@ -1,6 +1,6 @@
-import Title from "../../components/title"
-import AddTodo from "../../components/addTodo"
-import Todo from "../../components/todo"
+import Title from "../../components/todolist/title"
+import AddTodo from "../../components/todolist/addTodo"
+import Todo from "../../components/todolist/todo"
 import { collection , query , onSnapshot , doc , updateDoc , deleteDoc } from "@firebase/firestore";
 import { db } from "../../firebase"
 import {useEffect, useState} from "react";
