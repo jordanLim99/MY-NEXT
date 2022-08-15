@@ -18,10 +18,7 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
 
     return(
         <>
-            <div className="flex flex-col gap-2 text-2xl justify-center items-start bg-gray-100 rounded-md p-4 w-fit mx-auto my-2">
-                <div className="w-24 text-sm">
-                    {todo.user !== null ? <p className="text-md">{todo.user}</p> : <></>}
-                </div>
+            <div className="flex flex-col gap-2 text-2xl justify-center bg-gray-100 rounded-md p-4 w-fit mx-auto my-2">
                 <div>
                     <textarea
                         style={{ textDecoration : todo.complete && "line-through " , width : 300 , height : 50 , resize : "none" }}
@@ -30,22 +27,28 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
                         className="rounded-md"
                     />
                 </div>
-                <div className="flex gap-4 ">
-                    <button
-                        onClick={() => toggleComplete(todo)}>
-                        <CheckCircleIcon className="h-8 w-8 text-gray-900"/>
-                    </button>
+                <div className="flex ">
+                    <div className="text-md flex items-center">
+                        {todo.user !== null ? <p className="text-md">{todo.user} </p> : <></>}
+                    </div>
+                    <div className="flex ml-auto gap-2">
+                        <button
+                            onClick={() => toggleComplete(todo)}>
+                            <CheckCircleIcon className="h-8 w-8 text-gray-900"/>
+                        </button>
 
-                    <button
-                        onClick={()=> handleEdit( todo , newTitle )}
-                    >
-                        <PencilAltIcon className="h-8 w-8 text-gray-900"/>
-                    </button>
-                    <button
-                        onClick={()=>{ handleDelete(todo)}}
-                    >
-                        <TrashIcon className="h-8 w-8 text-gray-900"/>
-                    </button>
+                        <button
+                            onClick={()=> handleEdit( todo , newTitle )}
+                        >
+                            <PencilAltIcon className="h-8 w-8 text-gray-900 "/>
+                        </button>
+                        <button
+                            onClick={()=>{ handleDelete(todo)}}
+                        >
+                            <TrashIcon className="h-8 w-8 text-gray-900"/>
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </>
