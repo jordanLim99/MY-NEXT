@@ -7,12 +7,8 @@ import {useEffect, useState} from "react";
 
 export default function ToDoList() {
     const [todos , setTodos ] = useState([]);
-    // const [Direction , setDirection ] = useState( "asc" )
-    // const changeDirection = () => {
-    //     Direction==="asc" ? setDirection("desc") : setDirection("asc")
-    // }
     useEffect(()=>{
-        const q = query(collection( db ,"todos" ) , orderBy('date' , "asc"));
+        const q = query(collection( db ,"todos" ) , orderBy('date' , "asc" ));
         const unsub = onSnapshot( q , (querySnapshot) => {
             let todosArray: any[] = [];
             querySnapshot.forEach((doc) => {
@@ -36,27 +32,26 @@ export default function ToDoList() {
     }
 
 
-
-    return(
+    return (
         <>
             <div className="text-2xl flex flex-col gap-4 p-4 max-w-md mx-auto ">
                 <Title/>
                 <AddTodo/>
             </div>
             <div className="mb-20">
-                {todos.map( (todo : any ) =>(
-                        <Todo
-                            key={todo.id}
-                            todo={todo}
-                            toggleComplete={toggleComplete}
-                            handleDelete={handelDelete}
-                            handleEdit={handleEdit}
-                        >
-                        </Todo>
+                {todos.map((todo: any) => (
+                    <Todo
+                        key={todo.id}
+                        todo={todo}
+                        toggleComplete={toggleComplete}
+                        handleDelete={handelDelete}
+                        handleEdit={handleEdit}
+                    >
+                    </Todo>
 
-                ) )}
+                ))}
             </div>
 
         </>
-    )
+    );
 }

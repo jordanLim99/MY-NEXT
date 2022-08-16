@@ -19,19 +19,22 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
     return(
         <>
             <div className="flex flex-col gap-2 text-2xl justify-center bg-gray-100 rounded-md p-4 w-fit mx-auto my-2">
-                <div>
-                    <textarea
-                        style={{ textDecoration : todo.complete && "line-through " , width : 300 , height : 50 , resize : "none" }}
-                        value={todo.title === "" ? newTitle : todo.title }
-                        onChange={handleChange}
-                        className="rounded-md"
-                    />
-                </div>
+
                 <div className="flex ">
                     <div className="text-md flex items-center">
                         {todo.user !== null ? <p className="text-md">{todo.user} </p> : <></>}
                     </div>
-                    <div className="flex ml-auto gap-2">
+                </div>
+                <div className="flex justify-center items-center gap-2">
+                    <div>
+                    <textarea
+                        style={{ textDecoration : todo.complete && "line-through " , width : 250 , height : 80 , resize : "none" }}
+                        value={todo.title === "" ? newTitle : todo.title }
+                        onChange={handleChange}
+                        className="rounded-md"
+                    />
+                    </div>
+                    <div className="flex flex-col gap-2">
                         <button
                             onClick={() => toggleComplete(todo)}>
                             <CheckCircleIcon className="h-8 w-8 text-gray-900"/>
@@ -48,8 +51,8 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
                             <TrashIcon className="h-8 w-8 text-gray-900"/>
                         </button>
                     </div>
-
                 </div>
+
             </div>
         </>
     )

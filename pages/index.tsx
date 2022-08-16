@@ -26,9 +26,6 @@ const Home: NextPage = () => {
               8/15 ~ google 로그인 구현 및 todolist 닉네임 표시기능
             </p>
           </div>
-          <div className="w-96 h-96 object-cover">
-            <Spline  className="" scene="https://prod.spline.design/aT4-O51l60YSoduh/scene.splinecode"/>
-          </div>
         </div>
       </div>
 
