@@ -1,8 +1,6 @@
-import Link from "next/link";
-import {FiFileText, FiHome} from "react-icons/fi";
 import Head from "next/head";
-import Header from "./header";
-import Footer from "./footer";
+import Header from "./layout/header";
+import Footer from "./layout/footer";
 
 
 export default function Layout({children} : any ) {
