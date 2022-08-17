@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
 
-
 const Home: NextPage = () => {
+
+
   return (
       <div className="text-gray-600 body-font">
         <div className="py-12 mx-auto flex flex-col md:flex-row items-center justify-center gap-12">

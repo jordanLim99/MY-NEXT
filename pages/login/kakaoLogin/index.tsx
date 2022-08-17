@@ -1,25 +1,12 @@
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
-// import { db } from "../../../firebase";
-// import { collection , addDoc } from "@firebase/firestore";
+import { db  } from "../../../firebase";
+import { collection , addDoc , setDoc , doc} from "@firebase/firestore";
 
 
 export default function KakaoLogin() {
-    // const [kakaoData, setKakaoData ] = useState([]);
-    // useEffect(() => {
-    //     const q = query(collection(db, "kakaoData"));
-    //     const unsub = onSnapshot( q, (querySnapshot) => {
-    //         let kakaoArray: any[] = [];
-    //         querySnapshot.forEach((doc) => {
-    //             kakaoArray.push({...doc.data(), id: doc.id})
-    //         });
-    //         // @ts-ignore
-    //         setKakaoData(kakaoArray)
-    //     });
-    //     return (() => unsub())
-    // }, []);
 
-    // const [nickname , setNickname ] = useState("")
+
     const router = useRouter();
     const REST_API_KEY = "1b9c10e5284a52df35c6a15893708dd2";
     const REDIRECT_URI =  "https://jordanlim.vercel.app/login/kakaoLogin";
@@ -54,50 +41,32 @@ export default function KakaoLogin() {
             })
     }
 
+
     const getUserInfo = (token : any) => {
         fetch(`https://kapi.kakao.com/v2/user/me` , {
             method : "GET",
             headers : {
                 'Authorization' : `Bearer ${token}` ,
-                'Content-type' : 'application/x-www-form-urlencoded;charset=utf-8'
+                'Content-type' : 'application/x-www-form-urlencoded;charset=utf-8',
             },
         })
             .then( res => res.json() )
-            // .then( (res) => {
-                // setNickname(res.kakao_account.profile.nickname)
-                // setId(res.kakao_account.id)
-                // res.kakao_account.profile_image_needs_agreement === false ? setProfileImg(res.kakao_account.profile.profile_image_url) : setProfileImg("")
-                // res.kakao_account.email_needs_agreement === false ? setEmail(res.kakao_account.email.email) : setEmail("")
-                // res.kakao_account.gender_needs_agreement === false ? setGender(res.kakao_account.gender) : setGender("")
-                // res.kakao_account.birthday_needs_agreement === false ? setBirthday(`${res.kakao_account.birthday.birthyear}.${res.kakao_account.birthday.birthday} `) : setBirthday("")
-                // res.kakao_account.age_range_needs_agreement === false ? setAge(res.kakao_account.age_range) : setAge("")
-            // })
-            .then( (res) => localStorage.setItem("이름" , res.kakao_account.profile.nickname ))
-            .then( () => {localStorage.setItem("login" , String(true) )} )
-            // .then( () => firebasePush )
+            .then( async (res) => {
+                const nickname = res.kakao_account.profile.nickname
+                const kakaoId = res.id
+                localStorage.setItem("이름" , nickname )
+                localStorage.setItem("id" , kakaoId )
+                localStorage.setItem("login" , true )
+                // id 가 로그인 한 아이디와 같지 않다면 add Doc
+
+                await addDoc(collection(db,`kakaoData` ), {
+                    name : nickname,
+                    // id : kakaoId ,
+                    date : res.connected_at,
+                });
+            })
             .then( () => { router.push("/")} )
     }
-
-    // const [id , setId ] = useState("")
-    // const [email , setEmail ] = useState("")
-    // const [gender , setGender ] = useState("")
-    // const [age , setAge ] = useState("")
-    // const [birthday , setBirthday ] = useState("")
-    // const [profileImg , setProfileImg ] = useState("")
-
-
-    // const firebasePush =  async () => {
-    //         console.log("id,email,gender,age,birthday,profileImg,nickname" + id,email,gender,age,birthday,profileImg,nickname)
-    //     await addDoc(collection(db,"kakaoData"), {
-    //         id,
-    //         nickname,
-    //         profileImg,
-    //         email,
-    //         gender,
-    //         age,
-    //         birthday,
-    //     });
-    // }
 
 
     return(
@@ -106,3 +75,4 @@ export default function KakaoLogin() {
         </>
     )
 }
+//
