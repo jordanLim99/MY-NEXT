@@ -5,7 +5,7 @@ import {useRouter} from "next/router";
 
 export default function KakaoLogin() {
 
-    const PARAMS = new URL(document.location).searchParams;
+    const PARAMS = new URL(`${document.location}`).searchParams;
     const KAKAO_CODE = PARAMS.get('code');
     const router = useRouter();
     const REST_API_KEY = "1b9c10e5284a52df35c6a15893708dd2";
