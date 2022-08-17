@@ -8,7 +8,7 @@ import {useEffect, useState} from "react";
 export default function ToDoList() {
     const [todos , setTodos ] = useState([]);
     useEffect(()=>{
-        const q = query(collection( db ,"todos" ) , orderBy('date' , "asc" ));
+        const q = query(collection( db ,"todos" ) , orderBy('date' , "desc" ));
         const unsub = onSnapshot( q , (querySnapshot) => {
             let todosArray: any[] = [];
             querySnapshot.forEach((doc) => {

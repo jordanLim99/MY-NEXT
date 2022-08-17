@@ -5,7 +5,9 @@ import {collection, addDoc, } from "firebase/firestore"
 export default function AddTodo() {
     const [title , setTitle ] = useState("");
     let date = Date.now();
-    const userName = auth.currentUser?.displayName ? auth.currentUser?.displayName : null
+
+
+    const userName = auth.currentUser?.displayName ? auth.currentUser?.displayName : localStorage.getItem("이름")
     const handleSubmit = async (e : any) => {
         e.preventDefault();
         if (title !== "") {
