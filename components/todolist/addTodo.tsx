@@ -12,7 +12,7 @@ export default function AddTodo() {
         if (auth.currentUser?.displayName) {
             setUserName(auth.currentUser?.displayName)
         } else {
-            setUserName(toString(localStorage.getItem("이름")))
+            setUserName(localStorage.getItem("이름"))
         }
     } ,[])
 
