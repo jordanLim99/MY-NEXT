@@ -25,9 +25,9 @@ export default function Login ( props : any) {
     }
 
 
-    const REST_API_KEY = "1b9c10e5284a52df35c6a15893708dd2";;
+    const REST_API_KEY = "1b9c10e5284a52df35c6a15893708dd2";
     const REDIRECT_URI =  "https://jordanlim.vercel.app/login/kakaoLogin";
-    const LOGOUT_REDIRECT_URI = "https://jordanlim.vercel.app";
+    const LOGOUT_REDIRECT_URI = "https://jordanlim.vercel.app/login";
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
     const signInWithKakao = () => {
