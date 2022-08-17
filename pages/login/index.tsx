@@ -1,7 +1,5 @@
 import { auth , provider } from "../../firebase"
 import {signInWithPopup, signOut} from "@firebase/auth";
-import {useState} from "react";
-
 
 export default function Login ( props : any) {
     let isLogIn = props.isAuth
@@ -26,6 +24,14 @@ export default function Login ( props : any) {
             .then( () => { console.log( "localStorage login" + localStorage.getItem("login"))})
     }
 
+
+    const REST_API_KEY = "1b9c10e5284a52df35c6a15893708dd2";
+    const REDIRECT_URI =  "http://localhost:3000/login/kakaoLogin";
+    const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+    const signInWithKakao = () => {
+        window.location.href = KAKAO_AUTH_URL;
+    }
     return (
         <>
             <div className="text-2xl text-center pt-12">
@@ -37,15 +43,26 @@ export default function Login ( props : any) {
                         </button>
                     </div>
                     :
-                    <div className=" flex flex-col justify-center items-center gap-8 ">
-                        <p>sign in with google to continue</p>
-                        <button onClick={signInWithGoogle} className="p-4 bg-gray-100 rounded-md hover:bg-gray-300">구글로 로그인 하기
-                        </button>
+                    <div className=" flex flex-col justify-center items-center gap-8 text-base">
+                        <p>sign in to continue</p>
+                        <a onClick={signInWithGoogle}>
+                            <img
+                                className="w-56"
+                                src="/google_login.png"/>
+                        </a>
+                        <a onClick={signInWithKakao}>
+                            <img
+                                src="/kakao_login.png"
+                                className="w-56"
+                                alt="카카오 로그인 버튼"
+                            />
+                        </a>
                     </div>
                 }
             </div>
         </>
     );
 }
+
 
 
