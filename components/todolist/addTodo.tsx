@@ -1,17 +1,21 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { db , auth} from "../../firebase";
 import {collection, addDoc, } from "firebase/firestore"
+
 
 export default function AddTodo() {
     const [title , setTitle ] = useState("");
     let date = Date.now();
     const [userName , setUserName ] = useState("")
-    if (auth.currentUser?.displayName) {
-        setUserName(auth.currentUser?.displayName)
-    } else {
-        // @ts-ignore
-        setUserName(toString(localStorage.getItem("이름")))
-    }
+
+    useEffect(()=>{
+        if (auth.currentUser?.displayName) {
+            setUserName(auth.currentUser?.displayName)
+        } else {
+            setUserName(toString(localStorage.getItem("이름")))
+        }
+    } ,[])
+
 
     const handleSubmit = async (e : any) => {
         e.preventDefault();
