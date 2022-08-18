@@ -1,7 +1,9 @@
 import { auth , provider } from "../../firebase"
 import {signInWithPopup, signOut} from "@firebase/auth";
+import {useRouter} from "next/router";
 
 export default function Login ( props : any) {
+    const router = useRouter();
     let isLogIn = props.isAuth
     const signInWithGoogle = () => {
         signInWithPopup( auth, provider )
@@ -22,6 +24,8 @@ export default function Login ( props : any) {
                 props.onChange(false)
             })
             .then( () => { console.log( "localStorage login" + localStorage.getItem("login"))})
+            .then( () => {router.push("/")})
+
     }
 
     const REDIRECT_URI =  "https://jordanlim.vercel.app/login/kakaoLogin";
@@ -35,21 +39,23 @@ export default function Login ( props : any) {
         window.location.href = KAKAO_AUTH_URL;
     }
 
-    const signOutWithKaKao = () => {
-        fetch(`kauth.kakao.com/oauth/logout?client_id=${REST_API_KEY}&logout_redirect_uri=${LOGOUT_REDIRECT_URI}`,)
+    const signOutWithKaKao = async () => {
+        await fetch(`kauth.kakao.com/oauth/logout?client_id=${REST_API_KEY}&logout_redirect_uri=${LOGOUT_REDIRECT_URI}`)
+        await router.push("/")
     }
 
     return (
         <>
             <div className="text-2xl text-center pt-12">
-                { isLogIn  ?
-                    <div className=" flex flex-col justify-center items-center gap-8 ">
-                        <p>환영합니다 { localStorage.getItem("이름") ? localStorage.getItem("이름") : auth.currentUser?.displayName  }님 </p>
-                        <button onClick={
-                            localStorage.getItem("token" ) ?
-                            signOutWithGoogle : signOutWithKaKao
-                        }
-                                className="p-4 bg-gray-100 rounded-md hover:bg-gray-300">로그아웃
+                {isLogIn ?
+                    <div className="flex flex-col justify-center items-start gap-4 max-w-md mx-auto">
+                        <p className="text-left pl-5">환영합니다 {localStorage.getItem("이름") ? localStorage.getItem("이름") : auth.currentUser?.displayName}님 </p>
+                        <button className="w-full bg-gray-100 rounded-md text-left p-5">
+                            내정보
+                        </button>
+                        <button onClick={localStorage.getItem("token") ? signOutWithGoogle : signOutWithKaKao}
+                                className="w-full bg-gray-100 rounded-md text-left p-5">
+                            로그아웃
                         </button>
                     </div>
                     :

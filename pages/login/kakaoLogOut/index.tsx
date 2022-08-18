@@ -1,9 +1,11 @@
 import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 // import { db  } from "../../../firebase";
 // import { setDoc , doc } from "@firebase/firestore";
 
 
 export default function KakaoLogOut() {
+    const router = useRouter();
     useEffect( () => {
         const token = localStorage.getItem("token")
         getKakaoToken(token);
@@ -17,6 +19,7 @@ export default function KakaoLogOut() {
             .then( (res) => res.json() )
             .then( res => {
                 const id = res.id
+                router.push("/login")
                 console.log(res )
             })
     }
