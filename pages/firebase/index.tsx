@@ -1,43 +1,25 @@
 import {useEffect, useState} from "react";
 import { db , auth } from "../../firebase";
-import {collection, addDoc} from "firebase/firestore"
+import {collection, addDoc , doc , setDoc} from "firebase/firestore"
 
 
-export default function AddTodo() {
+export default function Firebase() {
     const [title , setTitle ] = useState("");
     let date = Date.now();
-    const [userName , setUserName ] = useState("")
-
-
-    const kakaoUserName = JSON.stringify(localStorage.getItem("이름")).substring(1 , 4)
-
-
-    useEffect(()=>{
-        if (auth.currentUser?.displayName) {
-            setUserName(auth.currentUser?.displayName)
-        } else {
-            setUserName(kakaoUserName)
-        }
-    } ,[])
-
-
     const handleSubmit = async (e : any) => {
         e.preventDefault();
-        if (title !== "") {
-            await addDoc(collection(db,"todos"), {
-                title,
-                user : userName ,
+            await setDoc(doc(db,"firestore" , "id"), {
+                title : "firestore",
+                user : "name" ,
                 date : date,
-                completed : false,
             });
             setTitle("");
-        }
     }
 
     return(
         <>
-                <form onSubmit={handleSubmit}>
-                    <div className="flex flex-row gap-8 justify-center items-center">
+            <form onSubmit={handleSubmit}>
+                <div className="flex flex-row gap-8 justify-center items-center">
                     <div>
                         <input
                             type="text"
@@ -50,8 +32,8 @@ export default function AddTodo() {
                     <div>
                         <button>Add</button>
                     </div>
-                    </div>
-                </form>
+                </div>
+            </form>
 
 
         </>
