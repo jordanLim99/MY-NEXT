@@ -9,13 +9,11 @@ export default function AddTodo() {
     const [userName , setUserName ] = useState("")
 
 
-    const kakaoUserName = JSON.stringify(localStorage.getItem("이름")).substring(1 , 4)
-
-
     useEffect(()=>{
         if (auth.currentUser?.displayName) {
             setUserName(auth.currentUser?.displayName)
         } else {
+            const kakaoUserName = JSON.stringify(localStorage.getItem("이름")).substring(1 , 4)
             setUserName(kakaoUserName)
         }
     } ,[])
