@@ -1,7 +1,7 @@
 import Title from "../../components/todolist/title"
 import AddTodo from "../../components/todolist/addTodo"
 import Todo from "../../components/todolist/todo"
-import {collection, query, onSnapshot, doc, updateDoc, deleteDoc, orderBy} from "@firebase/firestore";
+import {collection, query, onSnapshot, doc, updateDoc, deleteDoc, orderBy, setDoc} from "@firebase/firestore";
 import { db } from "../../firebase"
 import {useEffect, useState} from "react";
 
@@ -11,18 +11,20 @@ export default function ToDoList() {
         const q = query(collection( db ,"todos" ) , orderBy('date' , "desc" ));
         const unsub = onSnapshot( q , (querySnapshot) => {
             let todosArray: any[] = [];
-            querySnapshot.forEach((doc) => {
-                todosArray.push({...doc.data() , id : doc.id })
-            });
+            querySnapshot.forEach((doc) => { todosArray.push({...doc.data() , id : doc.id }) });
             // @ts-ignore
             setTodos(todosArray)
+            console.log(todosArray)
         });
         return( () => unsub() )
     },[] )
 
-    const handleEdit = async ( { todo , title } : any ) => {
-        await updateDoc(doc(db, "todos" , todo.id ) , { title : title} );
-    }
+
+
+    // const handleEdit = async ( { todo , title } : any ) => {
+    //     await setDoc(doc(db, "todos" , todo.id ) , { title : title} );
+    // }
+
     const toggleComplete = async ( todo : any ) => {
         await updateDoc(doc(db, "todos" , todo.id ) , { complete : !todo.complete })
     }
@@ -47,7 +49,6 @@ export default function ToDoList() {
                         todo={todo}
                         toggleComplete={toggleComplete}
                         handleDelete={handelDelete}
-                        handleEdit={handleEdit}
                     >
                     </Todo>
 

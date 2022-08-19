@@ -2,8 +2,10 @@ import {TrashIcon} from "@heroicons/react/outline";
 import {CheckCircleIcon} from "@heroicons/react/outline";
 import {PencilAltIcon} from "@heroicons/react/solid";
 import {useState} from "react";
+import {doc, updateDoc} from "@firebase/firestore";
+import {db} from "../../firebase";
 
-export default function Todo( { todo , toggleComplete , handleDelete , handleEdit, } : any ) {
+export default function Todo( { todo , toggleComplete , handleDelete  } : any ) {
     const [ newTitle , setNewTitle ] = useState( todo.title );
 
     const handleChange = (e : any) => {
@@ -16,6 +18,14 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
         }
     }
 
+    const handleEdit = async () => {
+        await updateDoc(doc(db, "todos" , todo.id ) , { title : `${newTitle}`} );
+        await updateDoc(doc(db, "todos" , todo.id ) , {isTitleEdit : true})
+    }
+
+
+
+
     return(
         <>
             <div className="flex flex-col gap-2 text-2xl justify-center bg-gray-100 rounded-md p-4 w-fit mx-auto my-2">
@@ -23,6 +33,11 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
                 <div className="flex ">
                     <div className="text-md flex items-center">
                         {todo.user !== null ? <p className="text-md">{todo.user} </p> : <></>}
+                    </div>
+                    <div className="flex text-sm ml-auto items-end text-gray-500">
+                        {todo.isTitleEdit && <>
+                            <p >수정됨 {todo.date}</p>
+                        </>}
                     </div>
                 </div>
                 <div className="flex justify-center items-center gap-2">
@@ -41,7 +56,7 @@ export default function Todo( { todo , toggleComplete , handleDelete , handleEdi
                         </button>
 
                         <button
-                            onClick={()=> handleEdit( todo , newTitle )}
+                            onClick={()=> handleEdit()}
                         >
                             <PencilAltIcon className="h-8 w-8 text-gray-900 "/>
                         </button>
