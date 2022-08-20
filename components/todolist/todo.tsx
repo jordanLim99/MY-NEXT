@@ -29,7 +29,6 @@ export default function Todo( { todo , toggleComplete , handleDelete  } : any ) 
     return(
         <>
             <div className="flex flex-col gap-2 text-2xl justify-center bg-gray-100 rounded-md p-4 w-fit mx-auto my-2">
-
                 <div className="flex ">
                     <div className="text-md flex items-center">
                         {todo.user !== null ? <p className="text-md">{todo.user} </p> : <></>}

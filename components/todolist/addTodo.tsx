@@ -2,14 +2,10 @@ import {useEffect, useState} from "react";
 import { db , auth } from "../../firebase";
 import {collection, addDoc , setDoc  , doc} from "firebase/firestore"
 import dayjs from "dayjs"
-import {now} from "next-auth/client/_utils";
 
 export default function AddTodo() {
     const [title , setTitle ] = useState("");
-    // let date = Date.now();
-    dayjs.locale('ko')
-    const date = dayjs().format("MM월 DD일 HH:mm")
-    console.log(date)
+
     const [userName , setUserName ] = useState("")
 
 
@@ -26,7 +22,8 @@ export default function AddTodo() {
     const handleSubmit = async (e : any) => {
         e.preventDefault();
         if (title !== "") {
-            // await setDoc(doc(db, "todos" ) , {
+            const date = dayjs().format("MM월 DD일 HH:mm")
+            // await setDoc(doc(db, "todos"  ) , {
             //     title,
             //     user : userName ,
             //     date : date,

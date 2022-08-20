@@ -19,9 +19,9 @@ export default function Header() {
                         <Link href="/todolist">
                             <a className="mx-2 hover:text-gray-900">TODOLIST</a>
                         </Link>
-                        <Link href="/login">
-                            <a className="mx-2 hover:text-gray-900">MY</a>
-                        </Link>
+                        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                        <a href="/login" className="mx-2 hover:text-gray-900">MY</a>
+
                     </nav>
                 </div>
             </header>

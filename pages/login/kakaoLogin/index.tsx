@@ -67,6 +67,7 @@ export default function KakaoLogin() {
                 localStorage.setItem("login" , String(true) )
                 console.log(res)
                 await setDoc(doc(db,"kakaoData" , `${kakaoId}` ), {
+                    login : true,
                     name : nickname,
                     date : connectedAt,
                     ageRange : ageRange,
@@ -86,4 +87,3 @@ export default function KakaoLogin() {
         </>
     )
 }
-//
