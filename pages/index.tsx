@@ -24,6 +24,10 @@ const Home: NextPage = () => {
               8/15 ~ google 로그인 구현 및 todolist 닉네임 표시기능
               <br/>
               8/16 ~ kakao 로그인 구현
+              <br/>
+              8/18 kakao 로그인 완료
+              <br/>
+              8/18 ~ my page 구현
             </p>
           </div>
         </div>

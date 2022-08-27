@@ -10,8 +10,8 @@ export default function KakaoLogin() {
     const router = useRouter();
     const REST_API_KEY = "1b9c10e5284a52df35c6a15893708dd2";
 
-    // const REDIRECT_URI =  "http://localhost:3000/login/kakaoLogin";
-    const REDIRECT_URI =  "https://jordanlim.vercel.app/login/kakaoLogin";
+    const REDIRECT_URI =  "http://localhost:3000/login/kakaoLogin";
+    // const REDIRECT_URI =  "https://jordanlim.vercel.app/login/kakaoLogin";
 
         useEffect( () => {
             const newLocation = document.location
