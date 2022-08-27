@@ -56,6 +56,10 @@ export default function Login ( props : any) {
         await router.push("/")
     }
 
+    const signInWithNaver = () => {
+
+    }
+
 
     return (
         <>
@@ -83,7 +87,16 @@ export default function Login ( props : any) {
                                 className="w-4 h-4"
                                 src={"/google.png"}
                             />
-                            구글로 로그인
+                            구글 로그인
+                        </button>
+                        <button
+                            className="flex items-center shadow-gray-100 shadow-2xl bottom-0 gap-2 p-4 w-full text-center font-bold items-center justify-center rounded-xl ring-1 ring-gray-400"
+                            onClick={ () =>{ alert("서비스 준비중 입니다.") }} >
+                            <img
+                                className="w-6 h-6"
+                                src={"/naverIcon.png"}
+                            />
+                            네이버 로그인
                         </button>
                         <button
                             className="flex items-center shadow-gray-100 shadow-2xl bottom-0 gap-2 bg-yellow-300 p-4 w-full text-center font-bold items-center justify-center rounded-xl"
@@ -92,8 +105,9 @@ export default function Login ( props : any) {
                                 className="w-4 h-4"
                                 src={"/kakao.svg"}
                             />
-                            카카오톡으로 로그인
+                            카카오톡 로그인
                         </button>
+
                     </div>
 
                 }
